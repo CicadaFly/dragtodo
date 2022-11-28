@@ -1,11 +1,11 @@
 import './App.css';
-//import Dragtodo from './components/Dragtodo';
-import Navbarr from './components/Navbarr';
+import Dragtodo from './components/Dragtodo';
+
 
 function App() {
   return (
     <div className="App">
-    <Navbarr />
+    <Dragtodo />
     </div>
   );
 }

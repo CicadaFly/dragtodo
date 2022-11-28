@@ -1,38 +1,46 @@
-import React from "react";
-import {
-    Container,
-    Navbar,
-    Nav,
-    NavDropdown,
-   } from "react-bootstrap"
+import React, { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbarr from './Navbarr';
+import List from './List'
+import {Container, Row } from "react-bootstrap";
 
 
 const Dragtodo = () => {
-    return (
-        <Navbar bg="light" expand="lg">
-          <Container>
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      );
+  const dummyData = [
+    {
+      title: "Title1",
+      todos: [
+        {names: "todo1",
+        finish: false},
+        {names: "todo2",
+        finish: false}
+      ]
+    },
+    {
+      title: "Title2",
+      todos: [
+        {names: "todo1",
+        finish: false},
+        {names: "todo20",
+        finish: true}
+      ]
+    }
+  ]
+  const [lists, setLists] = useState(dummyData)
+  return (
+<span>
+ <Navbarr></Navbarr>
+ <Container fluid="sm" className="board p-1">
+    <Row className="m-0">
+      {lists.map((list, index)=>(
+        <List key={index} {...list} />
+      ))}
+    </Row>
+    
+  </Container>
+
+ </span>
+  );
 
 
 }
