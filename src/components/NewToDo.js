@@ -13,14 +13,22 @@ const NewToDo = (props) => {
   const autoSize =()=>{
     setInputHeight(focusNew.current.scrollHeight+2);
   }
+  const addNewToDoHandler=(event)=>{
+    if (event.target.value.trim()) {
+      props.addToDo(props.listId, event.target.value)
+    }
+    event.target.value = ""
+    props.blur();
+  }
+
 return (
   <Form>
     <Form.Control as="textarea" 
                   ref={focusNew} 
                   style={textbox}
-                  // onBlur={props.blur}
+                  onBlur={addNewToDoHandler}
                   onKeyDown={(e)=>{
-                    if (e.key === "Enter") {props.blur()}
+                    if (e.key === "Enter") {addNewToDoHandler()}
                   }}
                   onInput={autoSize}
                   >
