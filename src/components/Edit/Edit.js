@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Form } from "react-bootstrap";
-import classes from "../styles/app.module.scss"
+import classes from "../../styles/app.module.scss"
 
 const Edit =({showEdit, setShowEdit})=> {
   const editRef = useRef(null)

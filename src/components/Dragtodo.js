@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbarr from './Navbarr';
-import List from './List'
+import List from './List/List'
 import {Container, Row } from "react-bootstrap";
-import Edit from "./Edit";
+import Edit from "./Edit/Edit";
 import classes from "../styles/app.module.scss"
 
 
@@ -39,20 +39,35 @@ const Dragtodo = () => {
 
   const [lists, setLists] = useState(dummyData)
   const [showEdit, setShowEdit] = useState(editStateInit)
-
+  // ADDING FUNCTION
   const addNewToDo=(listindex, newtodo)=>{
     let newList = [...lists]
     newList[listindex].todos.push({names: newtodo, finish: false}) //listindex用來辨識新增目標
     setLists(newList)
   }
+  // END OF ADDING FUNCTION
 
+  // EDITING FUNCTION
+  const editListTitle = (listindex, title) =>{
+    if (title){
+    let newLists = [...lists]
+    newLists[listindex].title = title
+    setLists(newLists)
+    }
+  }
+  // END OF EDITING FUNCTION
   return (
 <span>
  <Navbarr className={classes.navbar}></Navbarr>
  <Container fluid="sm" className={`${classes.board} p-1`}>
     <Row className="m-0">
       {lists.map((list, index)=>(
-        <List key={index} {...list} listId={index} addToDo={addNewToDo} setShowEdit={setShowEdit}/>
+        <List key={index} 
+              {...list} 
+              listId={index} 
+              addToDo={addNewToDo} 
+              setShowEdit={setShowEdit}
+              editListTitle={editListTitle}/>
       ))}
       {showEdit.show && <Edit showEdit={showEdit} setShowEdit={setShowEdit}/>}
     </Row>

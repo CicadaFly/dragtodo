@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Todo from './Todo';
-import NewToDo from './NewToDo';
+import Todo from '../Todo/Todo';
+import NewToDo from '../Todo/NewToDo';
 import { Button, Card } from 'react-bootstrap';
-import classes from "../styles/app.module.scss"
+import classes from "../../styles/app.module.scss"
+import ListTitle from './ListTitle';
 
 
-const List = ({title, todos, addToDo, listId, setShowEdit}) =>{
+const List = ({title, todos, addToDo, listId, setShowEdit, editListTitle}) =>{
 const [showNew, setShowNew] = useState(false)
 const showNewHandler = () =>{setShowNew(!showNew)}
 
 return(
 <Card className={`p-2 m-1 rounded-lg ${classes.list}`} style={{ width: '18rem' }}>
-    <div className={classes.title}>{title}</div>
+    <ListTitle listId={listId} title={title} editListTitle={editListTitle}/>
         {todos.map((todo, index) => (
         <Todo key={index} name={todo.names} setShowEdit={setShowEdit}/>
       ))}

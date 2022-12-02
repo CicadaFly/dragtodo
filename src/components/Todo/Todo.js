@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
-import classes from "../styles/app.module.scss"
+import classes from "../../styles/app.module.scss"
 
 
 const Todo = ({name, setShowEdit})=>{
