@@ -10,7 +10,7 @@ function App() {
     <span>
     <div className={classes.App}>
     <Dragtodo />
-    <EditableTable></EditableTable>
+    {/* <EditableTable></EditableTable> */}
     </div>
     </span>
   );

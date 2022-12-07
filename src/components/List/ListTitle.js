@@ -3,19 +3,24 @@ import classes from "../../styles/app.module.scss";
 
 
 const ListTitle = ({listId, title, editListTitle}) => {
-  const [fTitle, setFTitle] = useState("teting")
+
   const titleEditHandler = (props)=>{
-    const afterD = props.target.value
-    setFTitle(afterD)
+    if (props.target.value.trim()) {
+      editListTitle(listId, props.target.value.trim());
+    } else {
+      props.target.value = title;
+    }
   }
+ 
+
   return (
     <>
-    <div className={classes.title}>{title}</div>
     <div className={classes.title}>
       <input type="text" 
-             value={fTitle}
+             id={listId}
+             value={title}
              placeholder="Title name" 
-             onChange={titleEditHandler}>
+             onChange={titleEditHandler} >
       </input>
     </div>
     </>

@@ -5,6 +5,7 @@ import List from './List/List'
 import {Container, Row } from "react-bootstrap";
 import Edit from "./Edit/Edit";
 import classes from "../styles/app.module.scss"
+import NewList from "./List/NewList";
 
 
 const Dragtodo = () => {
@@ -45,6 +46,12 @@ const Dragtodo = () => {
     newList[listindex].todos.push({names: newtodo, finish: false}) //listindex用來辨識新增目標
     setLists(newList)
   }
+
+  const addlist=(newListTitle)=>{
+    let newList = [...lists]
+    newList.push({title: newListTitle, todos: []})
+    setLists(newList)
+  }
   // END OF ADDING FUNCTION
 
   // EDITING FUNCTION
@@ -70,8 +77,9 @@ const Dragtodo = () => {
               editListTitle={editListTitle}/>
       ))}
       {showEdit.show && <Edit showEdit={showEdit} setShowEdit={setShowEdit}/>}
+      
     </Row>
-    
+    <NewList addlist={addlist}></NewList>
   </Container>
 
  </span>
