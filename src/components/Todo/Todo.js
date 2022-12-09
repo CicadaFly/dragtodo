@@ -21,8 +21,9 @@ const Todo = ({name, setShowEdit})=>{
             left: left,
             width: width,
           },
-          value: name 
-        });
+          value: name
+        }
+        )
   }
   return(
     <div className= {`${classes.todo} my-1 p-1 rounded`}

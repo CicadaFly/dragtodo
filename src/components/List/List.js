@@ -15,7 +15,7 @@ return(
 <Card className={`p-2 m-1 rounded-lg ${classes.list}`} style={{ width: '18rem' }}>
     <ListTitle listId={listId} title={title} editListTitle={editListTitle}/>
         {todos.map((todo, index) => (
-        <Todo key={index} name={todo.names} setShowEdit={setShowEdit}/>
+        <Todo key={index} todoId={index} name={todo.names} setShowEdit={setShowEdit}/>
       ))}
       {showNew ? (
         <>
