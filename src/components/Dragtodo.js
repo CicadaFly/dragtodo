@@ -63,16 +63,23 @@ const Dragtodo = () => {
     }
   }
 
-  const editContent = (listindex,todoindex, content) =>{
-    // if (content){
-    //   let newLists = [...lists]
-    //   newLists[listindex].todos[todoindex].names = content
-    //   setLists(newLists)
-    // }
+  const editContent = (listId, todoId, content) =>{
+    if (content){
+      let newLists = [...lists]
+      newLists[listId].todos[todoId].names = content
+      setLists(newLists)
+      setShowEdit(editStateInit)
+    }
   }
-  const editDebug= () => { 
-    console.log(showEdit.value) 
-  }
+
+  const editFinish = (listId, todoId, finish) =>{
+      let newLists = [...lists]
+      newLists[listId].todos[todoId].finish = finish
+      setLists(newLists)
+      setShowEdit(editStateInit)
+    }
+  
+
   // END OF EDITING FUNCTION
   return (
 <span>
@@ -86,6 +93,7 @@ const Dragtodo = () => {
               addToDo={addNewToDo} 
               setShowEdit={setShowEdit}
               editListTitle={editListTitle}
+              editFinish={editFinish}
               />
       ))}
       {showEdit.show && 
@@ -95,7 +103,6 @@ const Dragtodo = () => {
       
     </Row>
     <NewList addlist={addlist}></NewList>
-    <button onClick={editDebug}>TTTTTTTTTTTTTTTTTTTT</button>
   </Container>
 
  </span>

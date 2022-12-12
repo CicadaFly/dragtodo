@@ -29,13 +29,12 @@ const Edit =({showEdit, setShowEdit,editContent})=> {
 
   const editCheckHandler = () =>{
     if(todoContent.trim()){
-      setShowEdit({
-        ...showEdit,
-        value: todoContent
-      })
-      editContent(showEdit.listId, showEdit.todoId, showEdit.value)
-    }
-    console.log(showEdit.listId,todoContent)
+      editContent(showEdit.listId, showEdit.todoId, todoContent)
+    } 
+  }
+
+  const cancelHandler = () =>{
+    return
   }
 
   return (
@@ -47,18 +46,26 @@ const Edit =({showEdit, setShowEdit,editContent})=> {
         <Form.Control 
           style={textareaSize}
           defaultValue={showEdit.value}
-          onChange={(e)=>{setTodoContent(e.target.value);console.log(e.target.value)}}
+          onChange={(e)=>{setTodoContent(e.target.value);}}
           rows="3" 
           as="textarea" 
           ref={editRef} 
           onClick={ (event) => {event.stopPropagation()} }/>
         </div>
         <Button type="submit"
-                className="mt-2"
+                className="mt-1 ms-1"
                 onMouseDown={(event)=>{event.preventDefault()}}
                 onClick={editCheckHandler}>
           Save
         </Button>
+        <Button type="button"
+                variant="secondary"
+                className="mt-1 ms-1"
+                onMouseDown={(event)=>{event.preventDefault()}}
+                onClick={cancelHandler}>
+          Cancel
+        </Button>
+
       </div>
     </Form>
       

@@ -2,15 +2,15 @@ import React, { useRef, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare, faCheckSquare, faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons'
 import classes from "../../styles/app.module.scss"
 
 
-const Todo = ({name, setShowEdit})=>{
+const Todo = ({listId, todoId, name, finish, setShowEdit, editFinish})=>{
   const targetRef = useRef(null)
   const [editIsShow, setEditIsShow] = useState(false)
-  const showEditHandler = ()=> { setEditIsShow(!editIsShow) }
-  const offEditHandler = ()=> { setEditIsShow(!editIsShow) }
+  const showEditHandler = ()=> { setEditIsShow(true) }
+  const offEditHandler = ()=> { setEditIsShow(false) }
   const clickEditHandler = (event) => {
     event.preventDefault()
     const { top, left, width } = targetRef.current.getBoundingClientRect();
@@ -21,21 +21,47 @@ const Todo = ({name, setShowEdit})=>{
             left: left,
             width: width,
           },
+          listId: listId,
+          todoId: todoId,
           value: name
         }
         )
   }
+
+  const finishCheck = (event)=>{
+    event.preventDefault()
+          setShowEdit({
+          listId: listId,
+          todoId: todoId,
+          })
+          let finishE = !finish
+          editFinish(listId, todoId, finishE)
+  }
+
+  const finishYet = (
+    !finish ? 
+    (<Button className='m-1' size='sm' title="Target finshed!" onClick={finishCheck}>
+    <FontAwesomeIcon icon={faCheckSquare} />
+      </Button>) :
+    (<Button className='m-1' size='sm' title="Target isn't finished yet" onClick={finishCheck}>
+    <FontAwesomeIcon icon={faArrowRotateLeft} />
+      </Button>
+    )
+  )
+  
   return(
     <div className= {`${classes.todo} my-1 p-1 rounded`}
           onMouseEnter={showEditHandler}
           onMouseLeave={offEditHandler}
           ref = {targetRef}>
-      {name}
-      {editIsShow && (
-        <Button variant='success' className='m-1' size='sm' onClick={clickEditHandler}>
+      { !finish ? <>{name}</> : <s>{name}</s>}
+      {editIsShow && (<>
+        <Button variant='success' className='m-1' size='sm' title="Edit" onClick={clickEditHandler}>
           <FontAwesomeIcon icon={faPenToSquare} />
-        </Button> )
-      }     
+        </Button> 
+         {finishYet}  </>
+        )
+      }
     </div>
   )
 }
