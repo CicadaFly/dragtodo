@@ -7,7 +7,7 @@ import classes from "../../styles/app.module.scss"
 import ListTitle from './ListTitle';
 
 
-const List = ({title, todos, addToDo, listId, setShowEdit, editListTitle, editFinish}) =>{
+const List = ({title, todos, addToDo, listId, setShowEdit, editListTitle, editFinish,moveTodo}) =>{
 const [showNew, setShowNew] = useState(false)
 const showNewHandler = () =>{setShowNew(!showNew)}
 
@@ -22,6 +22,7 @@ return(
               finish={todo.finish} 
               setShowEdit={setShowEdit}
               editFinish={editFinish}
+              moveTodo={moveTodo}
               />
       ))}
       {showNew ? (
@@ -29,7 +30,7 @@ return(
         <NewToDo blur={showNewHandler}
                  listId={listId}
                  addToDo={addToDo}/>
-        <Button variant="success" onClick={showNewHandler}>Close</Button>
+        <Button variant="success" onClick={showNewHandler} className="mt-2">Create New</Button>
         </>
       ) :  (
         <div className={`${classes.footer} pt-2 d-flex`}>

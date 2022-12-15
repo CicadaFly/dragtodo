@@ -22,7 +22,7 @@ const NewToDo = (props) => {
   }
 
 return (
-  <Form>
+  <Form className="mt-2">
     <Form.Control as="textarea" 
                   ref={focusNew} 
                   style={textbox}

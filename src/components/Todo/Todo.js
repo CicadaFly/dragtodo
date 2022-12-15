@@ -4,9 +4,34 @@ import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faCheckSquare, faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons'
 import classes from "../../styles/app.module.scss"
+import { ItemTypes } from '../../ReactDnD/Itemtype'; 
+import { useDrag, useDrop } from 'react-dnd';
 
 
-const Todo = ({listId, todoId, name, finish, setShowEdit, editFinish})=>{
+const Todo = ({listId, todoId, name, finish, setShowEdit, editFinish, moveTodo})=>{
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemTypes.TODO,
+    item: {olistId: listId, otodoId: todoId},
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging()
+    })
+  }))
+
+  const [, drop] = useDrop(() => ({
+    accept: ItemTypes.TODO,
+    hover: () => {
+      
+    },
+    drop: (item) => {
+      const {olistId, otodoId} = item;
+      const elistId = listId;
+      const etodoId = todoId;
+        if (olistId === elistId) {
+          if (otodoId === etodoId) { return }}
+      moveTodo(elistId,etodoId,olistId,otodoId)
+    },
+
+  }))
   const targetRef = useRef(null)
   const [editIsShow, setEditIsShow] = useState(false)
   const showEditHandler = ()=> { setEditIsShow(true) }
@@ -48,24 +73,29 @@ const Todo = ({listId, todoId, name, finish, setShowEdit, editFinish})=>{
       </Button>
     )
   )
-  
+  drag(drop(targetRef))
+
+  const testhand = () => { console.log(listId, todoId)}
   return(
-    <div className= {`${classes.todo} my-1 p-1 rounded`}
+  
+    <div className= {`${isDragging ? classes.tododrag : classes.todo} my-1 p-1 rounded text-wrap `}
           onMouseEnter={showEditHandler}
           onMouseLeave={offEditHandler}
-          ref = {targetRef}>
+          ref = {targetRef} >
       { !finish ? <>{name}</> : <s>{name}</s>}
       {editIsShow && (<>
         <Button variant='success' className='m-1' size='sm' title="Edit" onClick={clickEditHandler}>
           <FontAwesomeIcon icon={faPenToSquare} />
         </Button> 
-         {finishYet}  </>
+         {finishYet}  <button onClick={testhand}>DREOP</button></>
         )
       }
     </div>
+  
   )
 }
 
 
 
 export default Todo
+

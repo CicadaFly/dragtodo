@@ -122,7 +122,11 @@
         @include disBorderAndShadowOnFocus();
       }
     }
-
+    .tododrag{
+      position: relative;
+      word-wrap: break-word;
+      background-color: #5f7f69a4
+    }
     .new-todo {
       word-wrap: break-word;
       background-color: #8ccada;

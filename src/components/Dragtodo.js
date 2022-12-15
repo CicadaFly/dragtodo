@@ -16,15 +16,19 @@ const Dragtodo = () => {
         {names: "todo1",
         finish: false},
         {names: "todo2",
-        finish: false}
+        finish: false},
+        {names: "todo3",
+        finish: false},
+        {names: "todo4",
+        finish: true}
       ]
     },
     {
       title: "Title2",
       todos: [
-        {names: "todo1",
+        {names: "todo30",
         finish: false},
-        {names: "todo20",
+        {names: "todo40",
         finish: true}
       ]
     }
@@ -81,6 +85,22 @@ const Dragtodo = () => {
   
 
   // END OF EDITING FUNCTION
+
+  // MOVING FUNCTION
+    const moveTodo = (elistid, etodoid, olistid, otodoid) =>{
+      let newList = [...lists]
+      const targetTodo = newList[olistid].todos[otodoid]     
+      if (olistid === elistid) {
+        if (otodoid > etodoid)
+          {otodoid = otodoid+1}
+        if (otodoid < etodoid)
+          {etodoid = etodoid+1}}
+      newList[elistid].todos.splice(etodoid,0,targetTodo)
+      newList[olistid].todos.splice(otodoid,1)
+      console.log(targetTodo,elistid,etodoid)
+      setLists(newList)
+    }
+  // END OF MOVING FUNCTION
   return (
 <span>
  <Navbarr className={classes.navbar}></Navbarr>
@@ -94,6 +114,7 @@ const Dragtodo = () => {
               setShowEdit={setShowEdit}
               editListTitle={editListTitle}
               editFinish={editFinish}
+              moveTodo={moveTodo}
               />
       ))}
       {showEdit.show && 
