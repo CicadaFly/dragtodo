@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# 用React結合React_drag仿製Trello首頁的拖放功能
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
