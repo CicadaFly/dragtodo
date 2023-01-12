@@ -75,7 +75,6 @@ const Todo = ({listId, todoId, name, finish, setShowEdit, editFinish, moveTodo})
   )
   drag(drop(targetRef))
 
-  const testhand = () => { console.log(listId, todoId)}
   return(
   
     <div className= {`${isDragging ? classes.tododrag : classes.todo} my-1 p-1 rounded text-wrap `}
@@ -87,7 +86,7 @@ const Todo = ({listId, todoId, name, finish, setShowEdit, editFinish, moveTodo})
         <Button variant='success' className='m-1' size='sm' title="Edit" onClick={clickEditHandler}>
           <FontAwesomeIcon icon={faPenToSquare} />
         </Button> 
-         {finishYet}  <button onClick={testhand}>DREOP</button></>
+         {finishYet} </>
         )
       }
     </div>
