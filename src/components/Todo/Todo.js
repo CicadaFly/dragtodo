@@ -87,7 +87,7 @@ const Todo = ({listId, todoId, name, finish, setShowEdit, editFinish, moveTodo})
         <Button variant='success' className='m-1' size='sm' title="Edit" onClick={clickEditHandler}>
           <FontAwesomeIcon icon={faPenToSquare} />
         </Button> 
-         {finishYet}  <button onClick={testhand}>DREOP</button></>
+         {finishYet} </>
         )
       }
     </div>
