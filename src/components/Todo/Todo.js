@@ -75,7 +75,6 @@ const Todo = ({listId, todoId, name, finish, setShowEdit, editFinish, moveTodo})
   )
   drag(drop(targetRef))
 
-  const testhand = () => { console.log(listId, todoId)}
   return(
   
     <div className= {`${isDragging ? classes.tododrag : classes.todo} my-1 p-1 rounded text-wrap `}
